@@ -291,6 +291,61 @@ nav.scrolled {
   pointer-events: none;
 }
 
+/* BOOKING OPTIONS */
+.bookopts {
+  padding: 140px 60px;
+  background: var(--ink);
+  border-top: 1px solid var(--border);
+}
+.bookopts-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.bookopt-card {
+  padding: 48px 40px;
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: all 0.35s;
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+}
+.bookopt-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: scaleX(0); transition: transform 0.35s;
+}
+.bookopt-card:hover::before { transform: scaleX(1); }
+.bookopt-card:hover { border-color: var(--border); transform: translateY(-4px); box-shadow: 0 30px 80px rgba(0,0,0,0.4); }
+.bookopt-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+.bookopt-icon { font-size: 32px; }
+.bookopt-badge {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 5px 12px; background: var(--gold-dim); color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.25);
+}
+.bookopt-badge.secondary { background: rgba(255,255,255,0.04); color: rgba(242,237,228,0.35); border-color: rgba(255,255,255,0.07); }
+.bookopt-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+.bookopt-card p { font-size: 13px; line-height: 1.75; color: rgba(242,237,228,0.42); margin-bottom: 24px; }
+.bookopt-example {
+  padding: 14px 18px; background: rgba(201,168,76,0.05);
+  border: 1px solid var(--border); margin-bottom: 24px;
+}
+.bookopt-ex-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.bookopt-ex-url { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--paper); }
+.bookopt-ex-url em { color: var(--gold); font-style: normal; }
+.bookopt-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.bookopt-list li { font-size: 13px; color: rgba(242,237,228,0.42); padding-left: 18px; position: relative; line-height: 1.5; }
+.bookopt-list li::before { content: '–'; position: absolute; left: 0; color: var(--gold); }
+.bookopt-or { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 60px 32px; }
+.or-line { width: 1px; flex: 1; background: var(--border); min-height: 60px; }
+.or-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px; color: rgba(242,237,228,0.18); white-space: nowrap; }
+
 /* FEATURES */
 .features { padding: 140px 60px; background: var(--surface); }
 .features-hdr { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 72px; }
@@ -425,6 +480,11 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba
   .problem::before { display: none; }
   .how { padding: 80px 24px; }
   .how-inner { gap: 48px; }
+  .bookopts { padding: 80px 24px; }
+  .bookopts-grid { grid-template-columns: 1fr; }
+  .bookopt-or { flex-direction: row; padding: 20px 0; }
+  .or-line { width: auto; height: 1px; flex: 1; min-height: 0; }
+  .bookopt-card { padding: 32px 24px; }
   .features { padding: 80px 24px; }
   .features-hdr { grid-template-columns: 1fr; gap: 16px; }
   .feat-grid { grid-template-columns: 1fr 1fr; }
@@ -557,7 +617,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba
       <h2 class="sh2">Semudah<br><em>empat langkah.</em></h2>
       <p class="sbody" style="max-width:340px;">Setup dalam 10 minit. Dari hari pertama, barbershop korang dah jalan dengan sistem booking automatik.</p>
       <div class="steps">
-        <div class="step-item"><div class="step-n">01</div><div><div class="step-lbl">Customer Buka App</div><div class="step-desc">Pilih barbershop, pilih barber, pilih masa. Selesai dalam bawah 30 saat.</div></div></div>
+        <div class="step-item"><div class="step-n">01</div><div><div class="step-lbl">Customer Book — App atau Link</div><div class="step-desc">Customer boleh book terus via link barbershop korang, atau download app MyBarber. Dua cara, satu sistem.</div></div></div>
         <div class="step-item"><div class="step-n">02</div><div><div class="step-lbl">Booking Auto-Confirmed</div><div class="step-desc">Sistem confirm terus. Barbershop terima notifikasi dalam dashboard tanpa perlu reply manual.</div></div></div>
         <div class="step-item"><div class="step-n">03</div><div><div class="step-lbl">Reminder via WhatsApp</div><div class="step-desc">Customer dapat reminder 24 jam dan 1 jam sebelum. Boleh reschedule sendiri kalau ada hal.</div></div></div>
         <div class="step-item"><div class="step-n">04</div><div><div class="step-lbl">Customer Datang Tepat Masa</div><div class="step-desc">Tiada queue. Tiada tunggu lama. Barbershop run smooth. Customer happy, korang pun happy.</div></div></div>
@@ -595,6 +655,64 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba
   </div>
 </section>
 
+<!-- BOOKING OPTIONS -->
+<section class="bookopts reveal" id="booking-cara">
+  <div class="kicker" style="justify-content:center;margin-bottom:16px;"><div class="kicker-line"></div><div class="kicker-text">Dua Cara Booking</div><div class="kicker-line"></div></div>
+  <h2 class="sh2" style="text-align:center;font-size:clamp(32px,4vw,54px);margin-bottom:16px;">Tak perlu paksa customer<br><em>download app.</em></h2>
+  <p style="text-align:center;font-size:14px;color:rgba(242,237,228,0.4);max-width:480px;margin:0 auto 64px;line-height:1.85;">Customer boleh pilih cara yang paling selesa untuk diorang. Korang tetap terima booking dalam satu dashboard yang sama.</p>
+
+  <div class="bookopts-grid">
+    <!-- LINK -->
+    <div class="bookopt-card reveal">
+      <div class="bookopt-top">
+        <div class="bookopt-icon">🔗</div>
+        <div class="bookopt-badge">Paling Popular</div>
+      </div>
+      <h3>Book via Link</h3>
+      <p>Setiap barbershop dapat link booking unik. Customer klik link — terus ke halaman booking. Tiada download, tiada daftar akaun.</p>
+      <div class="bookopt-example">
+        <div class="bookopt-ex-label">Contoh Link</div>
+        <div class="bookopt-ex-url">mybarber.my/<em>nama-kedai-korang</em></div>
+      </div>
+      <ul class="bookopt-list">
+        <li>Boleh share di WhatsApp, Instagram, TikTok</li>
+        <li>Boleh print QR code untuk letak dalam kedai</li>
+        <li>Customer tak perlu daftar akaun</li>
+      </ul>
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="bookopt-or">
+      <div class="or-line"></div>
+      <div class="or-text">atau</div>
+      <div class="or-line"></div>
+    </div>
+
+    <!-- APP -->
+    <div class="bookopt-card reveal d1">
+      <div class="bookopt-top">
+        <div class="bookopt-icon">📱</div>
+        <div class="bookopt-badge secondary">Untuk Regular Customer</div>
+      </div>
+      <h3>Download App</h3>
+      <p>Customer yang selalu datang boleh download app MyBarber. Senang nak tengok history, manage booking, dan dapat reminder terus.</p>
+      <div class="bookopt-example">
+        <div class="bookopt-ex-label">Tersedia di</div>
+        <div class="bookopt-ex-url" style="display:flex;gap:12px;align-items:center;">
+          <span>🍎 App Store</span>
+          <span style="color:var(--muted);">·</span>
+          <span>▶ Google Play</span>
+        </div>
+      </div>
+      <ul class="bookopt-list">
+        <li>History booking dalam satu tempat</li>
+        <li>Push notification reminder</li>
+        <li>Cepat re-book barbershop kegemaran</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- FEATURES -->
 <section class="features reveal" id="features">
   <div class="features-hdr">
@@ -619,15 +737,15 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba
   <div>
     <div class="eb-badge"><div class="eb-dot"></div><div class="eb-badge-txt">Early Bird · Founding Member</div></div>
     <h2 class="eb-h2">Cuba<br><em>1 Bulan</em><span>Percuma.</span></h2>
-    <p class="eb-desc">Daftar sekarang sebagai Founding Member. Dapat akses penuh MyBarber selama 1 bulan percuma — tanpa bayar apa-apa, tanpa komitmen.</p>
+    <p class="eb-desc">Daftar sekarang sebagai Founding Member. Dapat akses penuh MyBarber selama 1 bulan percuma — tanpa bayar apa-apa. Kami akan setup semua untuk korang.</p>
     <div class="slot-bar-wrap">
       <div class="slot-track"><div class="slot-fill" id="slotFill"></div></div>
       <div class="slot-lbl" id="slotTxt">17 / 20 Slot</div>
     </div>
     <div class="perks-list">
       <div class="perk"><div class="perk-ck">✓</div><span><strong>1 bulan percuma</strong> — semua features, tiada had</span></div>
-      <div class="perk"><div class="perk-ck">✓</div><span><strong>Harga locked</strong> — early bird dapat kadar istimewa selamanya</span></div>
       <div class="perk"><div class="perk-ck">✓</div><span><strong>Priority support</strong> — akses terus kepada founder</span></div>
+      <div class="perk"><div class="perk-ck">✓</div><span><strong>Setup percuma</strong> — kami bantu onboarding dari mula</span></div>
     </div>
   </div>
   <div>
@@ -655,11 +773,11 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba
 <section class="trust reveal">
   <div class="ti"><span>🔐</span><span>Data Selamat</span></div>
   <div class="ti-sep">·</div>
-  <div class="ti"><span>📵</span><span>Tiada Kontrak</span></div>
-  <div class="ti-sep">·</div>
   <div class="ti"><span>🇲🇾</span><span>Dibina untuk Malaysia</span></div>
   <div class="ti-sep">·</div>
   <div class="ti"><span>⚡</span><span>Setup 10 Minit</span></div>
+  <div class="ti-sep">·</div>
+  <div class="ti"><span>🔗</span><span>Booking via Link atau App</span></div>
 </section>
 
 <!-- FOOTER -->
