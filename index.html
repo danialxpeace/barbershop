@@ -823,14 +823,43 @@ const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.targ
 document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
 
 // FORM
-function handleSubmit(){
-  const n=document.getElementById('fName').value.trim();
-  const p=document.getElementById('fPhone').value.trim();
-  if(!n||!p){alert('Sila isi nama barbershop dan nombor WhatsApp.');return;}
-  document.getElementById('formWrap').style.display='none';
-  document.getElementById('successState').classList.add('show');
-  document.getElementById('slotFill').style.width='90%';
-  document.getElementById('slotTxt').textContent='18 / 20 Slot';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxWboF8t8xDwJQr5S992uIHxLxlNfFSlI3AYNRRglfkKnvREeh6Ul05PBA_tBtb120a/exec';
+
+async function handleSubmit(){
+  const n = document.getElementById('fName').value.trim();
+  const o = document.getElementById('fOwner').value.trim();
+  const p = document.getElementById('fPhone').value.trim();
+  const l = document.getElementById('fLoc').value.trim();
+
+  if(!n || !p){ alert('Sila isi nama barbershop dan nombor WhatsApp.'); return; }
+
+  const btn = document.querySelector('.btn-submit');
+  btn.textContent = 'Menghantar...';
+  btn.disabled = true;
+
+  try {
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nama_barbershop: n,
+        nama_tuan_kedai: o,
+        whatsapp: p,
+        lokasi: l
+      })
+    });
+
+    document.getElementById('formWrap').style.display = 'none';
+    document.getElementById('successState').classList.add('show');
+    document.getElementById('slotFill').style.width = '90%';
+    document.getElementById('slotTxt').textContent = '18 / 20 Slot';
+
+  } catch(err) {
+    btn.textContent = 'Daftar Sekarang — Percuma';
+    btn.disabled = false;
+    alert('Ralat. Sila cuba semula.');
+  }
 }
 
 // SMOOTH SCROLL
